@@ -1,0 +1,103 @@
+body {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.header {
+  grid-column: 1/6;
+  grid-row: 1;
+  border: 1px solid black;
+  padding: 5%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -30px 36px -28px inset;
+}
+.content {
+  grid-column: 1/6;
+  grid-row: 2/6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.timer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+.contentClearSky {
+  background-color: lightskyblue;
+}
+.contentClearSky > img {
+  max-height: 20vh;
+  max-width: 20vw;
+}
+.contentFewClouds {
+  background-color: lightskyblue;
+}
+.contentFewClouds > img {
+  background-color: transparent;
+  max-width: 20vw;
+  max-height: 20vh;
+}
+.contentHaze {
+  background-color: lightgray;
+}
+.contentScatteredClouds {
+  background-color: lightblue;
+}
+.contentScatteredClouds > img {
+  max-width: 20vw;
+  max-height: 20vh;
+}
+.contentOvercastClouds {
+  background-color: lightslategray;
+}
+.contentStorm {
+  background-color: darkgrey;
+}
+.searchBar {
+  padding-right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.searchBar > * {
+  padding: 3%;
+  margin: 3%;
+}
+.searchBar > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: xx-large;
+  font-style: oblique;
+  align-self: center;
+}
+
+input {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5%;
+}
+input:required:invalid {
+  border: 1px solid red;
+}
+.invalid {
+  border: 1px solid red;
+}
+
+.button {
+}
+.button:hover {
+  background-color: lightgray;
+}
+.button:active {
+  /* box-shadow: 0 5px #666; */
+  transform: translateY(2px);
+}
