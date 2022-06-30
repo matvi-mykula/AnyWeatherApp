@@ -42,7 +42,7 @@ function searchWeather(location) {
 
   return info;
 }
-
+localStorage.setItem("favList", JSON.stringify([]));
 const printData = async () => {
   const aBegin = timerStart();
   const cityInput = document.getElementById("input");
@@ -57,6 +57,7 @@ const printData = async () => {
   const a = await searchWeather(city);
   console.log({ a });
   displayWeather(a);
+  localStorage.setItem("currentCity", JSON.stringify(a));
   const timeElapsed = timerEnd(aBegin);
   console.log(timeElapsed);
 
@@ -134,6 +135,7 @@ function displayWeather(weatherData) {
 //change theme/background
 function changeWeather(weatherData) {
   const content = document.getElementById("content");
+  content.className = "content";
   const currentWeather = weatherData["weatherDescription"];
 
   if (currentWeather == "clear sky") {
@@ -199,6 +201,44 @@ function timerEnd(aBegin) {
   const timeElapsed = end - aBegin;
   console.log(timeElapsed);
   return timeElapsed;
+}
+
+// need to add onclick to each dropdown option to display. might need entire dataset
+function addToFav() {
+  const currentCity = JSON.parse(localStorage.getItem("currentCity"));
+  console.log(currentCity);
+  if (currentCity) {
+    console.log(currentCity);
+    let favList = JSON.parse(localStorage.getItem("favList"));
+    console.log(favList);
+    favList.push(currentCity);
+    localStorage.setItem("favList", JSON.stringify(favList));
+
+    const select = document.getElementById("selectFav");
+    while (select.children.length > 1) {
+      select.removeChild(select.lastChild);
+    }
+    for (let i = 0; i < favList.length; i += 1) {
+      let favOption = favList[i];
+      let el = document.createElement("option");
+      el.textContent = favOption["cityName"];
+      el.value = favOption;
+      // el.onselect = displayWeather(currentCity);
+      select.appendChild(el);
+    }
+  }
+  return;
+}
+
+function showFav() {
+  const dataName = document.getElementById("selectFav");
+  const selectFav = dataName.options[dataName.selectedIndex].text;
+  const favList = JSON.parse(localStorage.getItem("favList"));
+  favList.forEach(function (a) {
+    if (a["cityName"] == selectFav) {
+      displayWeather(a);
+    }
+  });
 }
 
 // const aBegining = timerStart();

@@ -28,6 +28,18 @@
             value="Display"
             class="button"
           />
+          <input
+            type="button"
+            onclick="addToFav()"
+            value="Add to Favorites"
+            class="button"
+          />
+        </form>
+        <form action="" id="favForm">
+          <b>Favorites</b>
+          <select name="Select Favorite" id="selectFav" onchange="showFav()">
+            <option value="">Choose</option>
+          </select>
         </form>
       </div>
     </div>
